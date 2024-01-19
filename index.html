@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en-ca">
+  <head> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Assignment 3: Personal Website Design and Implementation</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      /*top right corner of site*/
+      table {
+        position: relative;
+        float: right;      
+        color: #868585;
+        font-size: 13px;
+      }
+      th {
+        padding-left: 10px; 
+      }
+      /*
+      Code copied from: https://www.w3schools.com/howto/howto_js_fullscreen_overlay.asp
+      Author: w3schools.com
+      Name: How TO - Full screen Overlay Navigation
+      Description: Creates a full screen overlay after clicking a button
+      Date retrieved: Dec. 5, 2023
+			*/
+      /* Copied code starts */
+      .overlay {
+        height: 0%;
+        width: 100%;
+        position: fixed;
+        z-index: 1;
+        top: -10px;
+        left: 0;
+        background-color: rgba(0,0,0, 0.9);
+        overflow-y: hidden;
+        transition: 0.5s;
+      }
+      /*Positioning content inside overlay*/
+      .overlay-content {
+        position: relative;
+        top: 20%;
+        width: 100%;
+        text-align: center;
+        margin-top: 30px;
+      }
+      /*Styling links inside overlay*/
+      .overlay a {
+        padding: 8px;
+        text-decoration: none;
+        font-size: 36px;
+        display: block;
+        transition: 0.3s;
+        color: white;
+      }
+      /* Copied code ends */
+      /* Positioning close button (top left corner) */
+      .closebtn {
+        position: fixed;
+        display: none;
+        font-size: 60px;
+        z-index: 2;
+      }
+      
+      /*for clickable links*/
+      a:link {
+        color: white;
+      }
+      a:visited {
+        color: white;
+      }
+      a:hover {
+        color: pink;
+      }
+      a:active {
+        color: #AA5656;
+      }
+      div {
+        padding: 50px;
+        margin: -10px;
+      }
+      h2 {
+        color: white;
+        font-size: 30px;
+        line-height: 1.5;
+      }
+      em {
+        font-size: 80px;
+        color: pink;
+      }
+      body {
+        font-family: Verdana;
+        color: white; 
+        background-color: #121212;
+      }
+      /*making sure everything is centered*/
+      .container {
+        align-items: center;
+        justify-content: center;
+        display: grid;
+        padding: 0;
+        overflow: none;
+      }
+      /*Positioning quick navigation list at bottom right*/
+      ul {
+        position: fixed;
+        text-align: right;
+        font-size: 14px;
+        margin-left: 1645px;
+        margin-top: 760px;
+      }
+      
+      /*black rectangles in section 1*/
+      .bRect1 {
+        float: left;
+        margin-top: 100px;
+        margin-left: -100px;
+        padding: 0;
+        position: absolute;
+      }
+      .bRect2 {
+        float: right;
+        margin-top: -100px;
+        margin-right: 50px;
+      }
+      /*pink line on landing page*/
+      .pRect {
+        float: left;
+        padding: 0px;
+        top: 150px;
+        left: -40px;
+        position: relative;
+      } 
+      
+      #section0, #section1, #section2, #section3, #section4, #section5, #section6, #section7, #section8, #section9 {
+        height: 1000px;  
+      }
+      
+      /*landing/main page*/
+      #section0 {
+        background-color: #121212;
+      }
+      /*positioning text off-center: intro page*/
+      .introText {
+        font-size: 50px;
+        float: left;
+        padding-left: 200px;
+        padding-right: 300px;
+        padding-top: 0px;
+      }
+      .kellyAvatar {
+        float: right;
+        position: absolute;
+        margin-top: 450px;
+        margin-left: -160px;
+      }
+      
+      /*page 1, background info*/
+      #section1 {
+        background-color: pink;
+      }
+      /*section text positioning, top-left*/
+      .question {
+        position: absolute;
+        float: left;
+        color: #121212;
+        font-size: 30px;
+      }
+      /*First part of text answer*/
+      .ethnicity {
+        position: absolute;
+        font-size: 40px;
+        color: white;
+        text-align: left;
+        padding-top: 400px;
+        line-height: 1.5;
+      }
+      /*Second part of text answer*/
+      .location {
+        position: absolute;
+        font-size: 40px;
+        line-height: 1.5;
+        color: white;
+        padding-top: 680px;
+      }
+      .text1 {
+        color: #121212;
+        font-size: 70px;
+        text-align: center;
+        margin-top: 740px;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+      }
+      /*My drawing of the CN Tower in the bg*/
+      .cnTower {
+        position: relative;
+        opacity: 0.3;
+        left: 500px;
+      }
+      /*My drawing of misc cultural items in the bg*/
+      .culture {
+        position: relative;
+        opacity: 0.3;
+        float: right;
+        left: 240px;
+        top: 420px;
+      }
+      /*My drawing of chinese lanterns in bg*/
+      .lantern {
+        position: relative;
+        opacity: 0.3;
+        left: 675px;
+        bottom: 400px;
+      }
+       .lantern2 {
+        position: relative;
+        opacity: 0.3;
+        left: 1000px;
+        bottom: 1385px;
+      }
+      /*My drawing of lion from traditional lion dance in the bg*/
+      .lion {
+        position: relative;
+        opacity: 0.3;
+        left: 850px;
+        bottom: 700px;
+      }
+      
+      /*page 2, picking prompt*/
+      #section2 {
+        background-color: #121212;
+      }
+      .text2 {
+        color: white;
+        text-align: center;
+        font-size: 70px;
+        margin-top: -140px;
+        position: absolute;
+        left: 0px;
+        right: 0px;
+      }
+      /*No text fill, just outline*/
+      .textOutline {
+        font-size: 160px;
+        color: transparent;
+        text-align: center;
+        margin-top: 150px;
+        
+        /*Code copied from: https://css-tricks.com/adding-stroke-to-web-text/
+        Author: Chris Coyier
+        Name: Adding Stroke to Web Text
+        Description: Removing the fill of text and leaving an outline
+        Date Retrieved: Dec. 3, 2023
+        */
+        
+        /*Copied code starts*/
+        -webkit-text-stroke: white;
+        -webkit-text-stroke-width: 0.5px;
+        /*Copied code ends*/
+      }
+      .textOutline2 {
+        font-size: 160px;
+        color: transparent;
+        text-align: center;
+        margin-top: -100px;    
+        -webkit-text-stroke: white;
+        -webkit-text-stroke-width: 0.5px;
+      }
+      .textFill {
+        font-size: 160px;
+        text-align: center;
+        padding: 0px;
+        margin-top: -100px;
+        color: pink;
+      }
+      
+      /*page 3, visual arts*/
+      #section3 {
+        background-color: #121212;
+      }
+      .text3 {
+        opacity: 0.2;
+        font-size: 30px;
+        text-align: center;
+        margin-top: 10px;
+      }
+      /* column for first row of visual art images */
+      div.row {
+        float: left;
+      }
+      /* column for first row of visual art images */
+      div.row2 {
+        float: left;
+        margin-top: -170px;
+      }
+      
+      /*page 4, visual arts pg2*/
+      #section4 {
+        background-color: #121212;
+      }
+      /*title styling for visual art page*/
+      .visualArt {
+        position: relative;
+        text-align: right;
+        float: right;
+        color: white;
+        font-size: 80px;
+        margin-left: -500px;
+        margin-top: 300px;
+        line-height: 1.5;
+      }
+      /*Drawing in the bg, left*/
+      .knifeDrawing {
+        float: left;
+        position: absolute;
+        margin-left: -2000px;
+        margin-top: -720px;
+        rotate: -8deg;
+        opacity: 0.3;
+      }
+      /*Slideshow positioning, visual art creations*/
+      .mySlides {
+        display: none;
+        margin-left: 44px;
+        margin-right: 0px;
+        border-radius: 10%;
+      }
+      /*Drawing process video positioning*/
+      .video {
+        float: right;
+        margin-left: 80px;
+      }
+      div.row3 {
+        float: none;
+        display: flex;
+      }
+      /*longer pink line on 4th page (visual arts)*/
+      .pRect2 {
+        float: right;
+        margin-left: 1465px;
+        margin-top: 600px;
+        position: absolute;
+      }
+      /* shorter pink line on 4th page (visual arts)*/
+      .pRect3 {
+        float: right;
+        margin-left: 1300px;
+        margin-top: 700px;
+        position: absolute;
+      }
+      
+      /*page 5, kelp studio*/
+      #section5 {
+        background-color: pink;
+        margin: 100px;
+      }
+      .title5 {
+        float: left;
+        font-size: 100px;
+        color: #121212;
+        margin-top: 0px;
+        line-height: 1.4;
+      }
+      .subtitle5 {
+        float: left;
+        font-size: 50px;
+        color: #121212;
+        margin-top: 250px;
+        margin-left: -360px;
+      }
+      .text5 {
+        position: absolute;
+        font-size: 40px;
+        opacity: 0.3;
+        margin-top: -370px;
+        margin-left: 880px;
+      }
+      /*show pictures when category is hovered over*/
+      .hide {
+        display: none;
+        float: right;
+      }
+      .heading:hover + .hide {
+        display: block;
+        opacity: 100%;
+        border-radius: 10%;
+      }
+      .heading {
+        position: absolute;
+        float: right;
+        font-size: 60px;
+        margin-top: 380px;
+        margin-left: 50px;
+        text-align: right;
+      }
+      /*highlight category title by changing opacity to full when hovered over*/
+      #highlight {
+        opacity: 0.3;
+      }
+      #highlight2 {
+        opacity: 0.3;
+      }
+      #highlight3 {
+        opacity: 0.3;
+      }
+      #highlight:hover {
+        opacity: 1.0;
+      }
+      #highlight2:hover {
+        opacity: 1.0;
+      }
+      #highlight3:hover {
+        opacity: 1.0;
+      }
+      
+      /*page 6, kelp studip pg2*/
+      #section6 {
+        background-color: #121212;
+        height: 830px;
+      }
+      /*longer pink line on 6th page*/
+      .pRect4 {
+        float: left;
+        margin-left: 180px;
+        margin-top: -200px;
+        position: absolute;
+      }
+      /* shorter pink line on 6th page*/
+      .pRect5 {
+        float: left;
+        margin-left: 10px;
+        margin-top: -200px;
+        position: absolute;
+      }
+      .text6 {
+        float: right;
+        text-align: right;
+        font-size: 65px;
+        line-height: 1.5;
+        margin-top: -10px;
+      }
+      /*Inquiry prompt*/
+      .fyi {
+        font-size: 50px;
+        line-height: 1.5;
+        float: left;
+        opacity: 0.7;
+        margin-top: 470px;
+        margin-left: 60px;
+      }
+      /*Kelp Studio logo positioning in bg*/
+      .logo {
+        float: left;
+        border-radius: 10%;
+        position: absolute;
+        margin-top: -280px;
+        opacity: 0.3;
+        margin-left: -150px;
+      }
+      /*Button leading to Kelp Studio information site*/
+      .button {
+        color: white;
+        background-color: transparent;
+        border: 2px solid pink;
+        font-family: Verdana;
+        display: inline-block;
+        cursor: pointer;
+        padding: 15px 32px;
+        text-align: center;
+        font-size: 30px;
+        border-radius: 3%;
+        margin-top: 60px;
+      }
+      .button:hover {
+        background-color: pink;
+        color: #121212;
+      }
+      .buttonPos {
+        float: left;
+        margin-left: -495px;
+        margin-top: 220px;
+      }
+      
+      /*page 7, 3D art*/
+      #section7 {
+        background-color: pink;
+      }
+      .title7 {
+        color: #121212;
+        text-shadow: 4px 6px 3px white;
+        float: right;
+        font-size: 90px;
+        margin-right: 200px;
+        margin-top: 400px;
+      }
+      .subtitle {
+        opacity: 0.3;
+        float: right;
+        text-align: center;
+        font-size: 40px;
+        line-height: 1.5;
+        margin-left: 950px;
+        margin-top: -100px;
+        position: absolute;
+      }
+      .description {
+        opacity: 0.3;
+        float: right;
+        text-align: center;
+        font-size: 40px;
+        line-height: 1.5;
+        margin-left: 990px;
+        margin-top: 220px;
+        position: absolute;       
+      }
+      /* right verticle pink line on 7th page*/
+      .pRect6 {
+        float: right;
+        margin-left: 1575px;
+        margin-top: -280px;
+        position: absolute;
+      }
+      /* right horizontal pink line on 7th page*/
+      .pRect7 {
+        float: right;
+        margin-left: 1430px;
+        margin-top: -100px;
+        position: absolute;
+      }
+      /* left verticle pink line on 7th page*/
+      .pRect8 {
+        float: left;
+        margin-left: -100px;
+        margin-top: -280px;
+        position: absolute;
+      }
+      /* left horizontal pink line on 7th page*/
+      .pRect9 {
+        float: left;
+        margin-left: -280px;
+        margin-top: -100px;
+        position: absolute;
+      }
+      /* top black line on 7th page*/
+      .bRect3 {
+        float: right;
+        margin-top: -330px;
+        margin-right: -200px;
+      }
+      /* bottom black line on 7th page*/
+      .bRect4 {
+        float: right;
+        margin-top: 500px;
+        margin-right: -200px;
+      }
+      /*3D image positioning*/
+      .donut {
+        position: absolute;
+        float: left;
+        margin-top: -45px;
+        margin-left: 200px;
+      }
+      .coffee {
+        position: absolute;
+        float: left;
+        margin-top: 176px;
+        margin-left: 200px;
+      }
+      .water {
+        position: absolute;
+        float: left;
+        margin-top: 400px;
+        margin-left: 200px;
+      }
+      
+      /*page 8, contact page*/
+      #section8 {
+        background-color: #121212;
+      }
+      /*outro page title*/
+      .outroText {
+        font-size: 100px;
+        float: left;
+        padding-left: 100px;
+        padding-top: 110px;
+        line-height: 1.4;
+      }
+      .text8 {
+        font-size: 60px;
+        float: right;
+        line-height: 1.4;
+        opacity: 0.6;
+        text-align: right;
+        padding-top: 150px;
+      }
+      /*Don't scroll down text on 2nd last page*/
+      .note {
+        position: absolute;
+        font-size: 20px;
+        opacity: 0.3;
+        padding-left: 700px;
+        padding-top: 650px;
+      }
+      /*full portfolio link button*/
+      .button2 {
+        color: pink;
+        background-color: transparent;
+        border: 2px solid pink;
+        font-family: Verdana;
+        display: inline-block;
+        cursor: pointer;
+        padding: 15px 32px;
+        text-align: center;
+        font-size: 30px;
+        border-radius: 3%;
+        margin-top: 60px;
+      }
+      .button2:hover {
+        background-color: pink;
+        color: white;
+      }
+      .buttonPos2 {
+        float: right;
+        margin-right: -430px;
+        margin-top: 200px;
+      }
+      /*email button*/
+      .button3 {
+        color: pink;
+        background-color: transparent;
+        border: 2px solid pink;
+        font-family: Verdana;
+        display: inline-block;
+        cursor: pointer;
+        padding: 15px 32px;
+        text-align: center;
+        font-size: 30px;
+        border-radius: 3%;
+        margin-top: 60px;
+      }
+      .button3:hover {
+        background-color: pink;
+        color: white;
+      }
+      .buttonPos3 {
+        float: right;
+        margin-right: -630px;
+        margin-top: 200px;
+      }
+      
+      /*page 9, fun ending page*/
+      #section9 {
+        background-color: #121212;
+      }
+      .text9 {
+        text-align: center;
+        font-size: 50px;
+        color: white;
+        margin-top: 400px;
+        line-height: 1.5;
+      }
+      /*back to top button*/
+      .button4 {
+        color: pink;
+        background-color: transparent;
+        border: 2px solid pink;
+        font-family: Verdana;
+        display: inline-block;
+        cursor: pointer;
+        padding: 15px 32px;
+        text-align: center;
+        font-size: 17px;
+        border-radius: 3%;
+        margin-top: 60px;
+      }
+      .button4:hover {
+        background-color: pink;
+        color: white;
+      }
+      .buttonPos4 {
+        position: relative;
+        float: right;
+        margin-top: -600px;
+        margin-left: 720px;
+      }
+      /*Drawing of Ahri at end page*/
+      .endDrawing {
+        position: absolute;
+        float: right;
+        margin-left: 900px;
+        margin-top: -870px;
+        opacity: 0.5;
+      }
+      /*Drawing of Violet Evergarden near bottom of Pick Your Poison text*/
+      .greenDrawing {
+        float: right;
+        position: absolute;
+        margin-left: 1100px;
+        margin-top: -450px;
+      }
+      footer {
+        height: 80px;
+        margin: 0px;
+        background-color: #323232;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!--quick right-hand navigation-->
+      <div>
+        <ul style="list-style-type:none;">
+          <li><a href="#section3">Visual Art</a></li>  
+          <li><a href="#section5">Kelp Studio</a></li>
+          <li><a href="#section7">3D Art</a></li>
+          <li><a href="#section8">Contact</a></li>
+          <li><a href="#section0">Back to top</a></li>
+        </ul>
+      </div>
+      <!--full screen navigation overlay-->
+      <div id="myNav" class="overlay">
+        <span style="font-size:20px;cursor:pointer" onclick="openNav()">Menu</span>
+        <table>
+          <th>Last Updated: Dec 2023 |</th>
+          <th>Kelly Lu</th>
+        </table>
+        <a href="javascript:void(0)" class="closebtn" style="display:none;" onclick="closeNav()">&times;</a>
+        <!--links/categories in menu overlay-->
+        <div class="overlay-content">
+          <a href="https://kelpstudio.carrd.co/" target="_blank">Kelp Studio</a>
+          <a href="https://kelpstudio.myportfolio.com/" target="_blank">Full Portfolio</a>
+          <a href="https://www.linkedin.com/in/kelly-lu-/" target="_blank">LinkedIn</a>
+          <a href="https://www.instagram.com/kelpstudio_/" target="_blank">Instagram</a>
+        </div>
+      </div>
+      <!--
+      Code copied from: https://www.w3schools.com/howto/howto_js_fullscreen_overlay.asp
+      Author: w3schools.com
+      Name: How TO - Full screen Overlay Navigation
+      Description: Creates a full screen overlay after clicking a button
+      Date retrieved: Dec. 5, 2023
+			-->
+      <!-- Copied code starts -->
+      <script>
+        <!--Opens fullscreen overlay after clicking on menu-->
+        function openNav() {
+          document.getElementById("myNav").style.height = "120%";
+          document.querySelector('.closebtn').style.display = 'block';
+        }
+        <!--Closes overlay after clicking on the 'X'-->
+        function closeNav() {
+          document.getElementById("myNav").style.height = "0%";
+          document.querySelector('.closebtn').style.display = 'none';
+        }
+      </script>
+       <!-- Copied code ends -->
+      
+      <!--landing page-->
+      <div id="section0">
+        <div class="pRect">
+          <img src="pinkSquare.png" alt="Pink rectangle" width="40px" height="800px">
+        </div>
+        <div class="introText">
+          <h1>Hello,<br>I'm<br><span style="color:pink;"><strong>Kelly Lu</strong></span></h1>
+          <h2>(She/Her)<br>Multidisciplinary Artist &<br>Entrepreneur</h2>
+        </div>
+        <img class="pfp" src="kellypfp.jpg" alt="Picture of Kelly" style="border-radius: 20%;" width="500px" height="auto">
+        <img class="kellyAvatar" src="avatar.png" alt="Avatar drawing" width="400px" height="auto">
+      </div>
+
+      <!--section 1/1st page (excluding landing page)-->
+      <div id="section1">
+        <div class="question">
+          <h1>The age old<br>question:</h1>
+          <h1><i>Where am I from?</i></h1>
+        </div>
+        <div class="ethnicity">
+          <p>I am a Cantonese,<br>Vietnamese,<br>and Canadian woman</p>
+        </div>
+        <div class="location">
+          <p>born &amp raised<br>in Toronto, Ontario</p>
+        </div>
+        <div class="text1">
+          <p><b>To be frank,</b></p>
+        </div>
+        <img class="bRect2" src="blackrect.png" alt="Rectangle" width="100px" height="600px">
+        <img class="bRect2" src="blackrect.png" alt="Rectangle" width="90px" height="300px">
+        <!--my drawings in the background-->
+        <img class="cnTower" src="cnTower.png" alt="CN Tower" width="auto" height="900px">
+        <img class="culture" src="lunar.png" alt="red pocket" width="550px" height="auto">
+        <img class="lantern" src="Lantern.png" alt="chinese lantern" width="auto" height="300px"> 
+        <div>
+          <img class="lion" src="lion.png" alt="lion dance head" width="400px" height="auto">
+        </div>
+        <div>
+          <img class="lantern2" src="Lantern.png" alt="chinese lantern" width="auto" height="300px"> 
+        </div>
+      </div>
+      
+      <!--section 2/2nd page (excluding landing page)-->
+      <div id="section2">
+        <div class="text2">
+          <p style="color:pink"><b>I do too many things so</b></p>
+        </div>
+        <div>
+        <p class="textOutline">PICK YOUR POISON</p>
+        <p class="textFill">PICK YOUR POISON</p>
+        <p class="textOutline2">PICK YOUR POISON</p>
+        </div>
+        <img class="greenDrawing" src="violet.png" alt="violet evergarden drawing" width="800px" height="auto">
+      </div>
+      
+      <!--section 3/3rd page (excluding landing page)-->
+      <div id="section3">
+        <p class="text3">Or I guess you could keep scrolling</p>
+        <div>
+          <div class="row">
+            <img src="red.png" alt="drawing of girl in black, white, and red" style="border-radius:10%;" width="auto" height="551.5px">
+          </div>
+          <div class="row">
+            <img src="nature.png" alt="drawing of woman with flowers, white, and red" style="border-radius:10%;" width="auto" height="551.5px">
+          </div>
+          <div class="row">
+            <img src="ai.png" alt="drawing of an anime pop star" style="border-radius:10%;" width="auto" height="551.5px">
+          </div>
+        </div>
+      </div>
+      
+      <!--section 4/4th page (excluding landing page)-->
+      <div id="section4">
+        <div class="pRect2">
+          <img src="pinkSquare.png" alt="Pink rectangle" width="60px" height="400px">
+        </div>
+        <div class="pRect3">
+          <img src="pinkSquare.png" alt="Pink rectangle" width="90px" height="340px">
+        </div>
+        <div>
+          <div class="row2">
+            <img src="spring.png" alt="cherry blossom girl drawing" style="border-radius:10%;" width="auto" height="500px">
+          </div>
+          <div class="row2">
+            <img src="ahri.png" alt="star guardian ahri drawing" style="border-radius:10%;" width="auto" height="500px">
+          </div>
+          <div class="row2">
+            <img src="pinkSquare.png" alt="pink square" style="border-radius:10%;" width="420px" height="500px">
+          </div>
+          <p class="visualArt"><b>Visual<br>Arts</b></p>
+        </div>
+        <img class="knifeDrawing" src="oni.png" alt="demon knife drawing" width="auto" height="700px">
+        <!--displays/holds slideshow pictures + process video next to it-->
+        <div class="row3">
+          <img class="mySlides" src="jisoo.jpg" alt="jisoo home sweet home drawing" style="width:500px; height:370px">
+          <img class="mySlides" src="bhc.png" alt="black history month drawing" style="width:500px; height:370px">
+          <img class="mySlides" src="wine.png" alt="girl and wine drawing" style="width:500px; height:370px">
+          <img class="mySlides" src="paint.png" alt="action painting" style="width:500px; height:370px">
+          <img class="mySlides" src="Spiderverse.png" alt="spiderverse drawing" style="width:500px; height:370px">
+          <video class="video" width="500px" height="auto" controls loop autoplay>
+            <source src="process.mp4" type="video/mp4">
+          </video>
+        </div>
+        <!--
+        Code copied from: https://www.w3schools.com/w3css/w3css_slideshow.asp
+        Author: w3schools.com
+        Name: Automatic Slideshow
+        Description: Displays an animated slideshow.
+        Date retrieved: Dec. 4, 2023
+				-->
+        <!-- Copied code starts -->
+        <script>
+          let myIndex = 0;
+          function carousel() {
+            let i;
+            let x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {   
+              x[i].style.display = "none";  
+            }
+            myIndex++;
+            if (myIndex > x.length) {myIndex = 1}    
+            x[myIndex-1].style.display = "block";  
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+          }
+          carousel();
+        </script>
+        <!--Copied code ends-->
+      </div>
+      
+      <!--section 5/5th page (excluding landing page)-->
+      <div id="section5"> 
+        <div>
+          <h1 class="title5">Kelp<br>Studio</h1>
+        </div>
+        <div>
+          <h2 class="subtitle5">my small business<br>selling handmade goods</h2>
+        </div>
+        <!--Hovering over each category heading shows a different image-->
+        <div>
+          <h3 class="heading" id="highlight">♡ Keychains</h3>
+          <img class="hide" src="knife.JPG" alt="keychain" style="width:400px; height:auto">
+        </div>
+        <div>
+          <h3 class="heading" id="highlight2">♡ Earrings</h3>
+          <img class="hide" src="wings.JPG" alt="earrings" style="width:400px; height:auto">
+        </div>
+        <div>
+          <h3 class="heading" id="highlight3">♡ Phone Cases</h3>
+          <img class="hide" src="case.jpg" alt="phone case" style="width:400px; height:auto">
+        </div>
+        <div>
+          <p class="text5"><i>(hover over a category!)</i></p>
+        </div>
+      </div>
+      
+      <!--section 6/6th page (excluding landing page)-->
+      <div id="section6">
+        <div class="pRect4">
+          <img src="pinkSquare.png" alt="Pink rectangle" width="60px" height="400px">
+        </div>
+        <div class="pRect5">
+          <img src="pinkSquare.png" alt="Pink rectangle" width="90px" height="340px">
+        </div>
+        <div>
+          <h2 class="text6">while you're<br>here... why not<br><em>buy something</em><br>to support a<br>local business?</h2>
+        </div>
+        <div>
+          <h1 class="fyi">For Information</h1>
+        </div>
+        <!--Leads to Kelp Studio information site-->
+        <div class="buttonPos">
+          <a href="https://kelpstudio.carrd.co/" target="_blank">
+            <button class="button">Click Here</button>
+          </a>
+        </div>
+        <div>
+          <img class="logo" src="logoWhite.png" alt="kelp studio logo" width="600px" height="auto">
+        </div>
+      </div>
+      
+      <!--section 7/7th page (excluding landing page)-->
+      <div id="section7">
+        <h1 class="title7">3D Art</h1>
+        <!--Pink lines/squares on the top of the page-->
+        <div class="pRect6">
+          <img src="pinkSquare.png" alt="Pink rectangle" width="60px" height="400px">
+        </div>
+        <div class="pRect7">
+          <img src="pinkSquare.png" alt="Pink rectangle" width="400px" height="60px">
+        </div>
+        <div class="pRect8">
+          <img src="pinkSquare.png" alt="Pink rectangle" width="60px" height="400px">
+        </div>
+        <div class="pRect9">
+          <img src="pinkSquare.png" alt="Pink rectangle" width="400px" height="60px">
+        </div>
+        <!--Images of 3D work-->
+        <div>
+          <img class="donut" src="donut.png" alt="3d donut" style="width:520px; height:auto">
+        </div>
+        <div>
+          <img class="coffee" src="coffee.png" alt="3d glass of coffee" style="width:520px; height:auto">
+        </div>
+        <div>
+          <img class="water" src="water.png" alt="3d glass of water" style="width:520px; height:auto">
+        </div>
+        <div class="subtitle">
+          <b>starting from the<br>legendary blender donut</b>
+        </div>
+        <div class="description">
+          <b>a hobby I started<br>during the pandemic</b>
+        </div>
+        <!--Black rectangles on top and bottom of page title-->
+        <img class="bRect3" src="blackrect.png" alt="Rectangle" width="60px" height="200px">
+        <img class="bRect4" src="blackrect.png" alt="Rectangle" width="60px" height="200px">
+      </div>
+      
+      <div id="section8">
+        <div>
+          <h1 class="outroText">Once<br>again,<br>I'm<br><span style="color:pink;">Kelly Lu</span></h1>
+        </div>
+        <div>
+          <h2 class="text8">Feel free to<br>connect with me!</h2>
+        </div>
+        <div>
+          <p class="note">Don't Scroll Down</p>
+        </div>
+        <!--Leads to my bigger/full portfolio site-->
+        <div class="buttonPos2">
+          <a href="https://kelpstudio.myportfolio.com/" target="_blank">
+            <button class="button2">Full Portfolio</button>
+          </a>
+        </div>
+        <!--Clicking on it opens up mail app with my Waterloo email already typed-->
+        <div class="buttonPos3">
+          <a href="mailto:k7lu@uwaterloo.ca">
+            <button class="button3">Email</button>
+          </a>
+        </div>
+      </div>
+      
+      <!--section 9/9th page (excluding landing page)-->
+      <div id="section9">
+        <h1 class="text9">Thanks for your interest<br>but there's actually nothing else.</h1>
+      </div>
+      <!--Takes you back to the top of the page upon clicking-->
+        <div class="buttonPos4">
+          <a href="#section0">
+            <button class="button4">Back to Top</button>
+          </a>
+        </div>
+        <div>
+          <img class="endDrawing" src="drawingOutline.png" alt="outline of drawing" width="700px" height="auto">
+        </div>
+      <!--page footer-->
+      <footer></footer>
+    </div>
+  </body>
+</html>
